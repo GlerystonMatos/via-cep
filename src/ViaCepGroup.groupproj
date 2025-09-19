@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EE3B118A-78C0-4691-B167-F8DBBB7D6C7D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ViaCep.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="component\ViaCepPackage.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="tests\ViaCepTest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ViaCep">
+        <MSBuild Projects="ViaCep.dproj"/>
+    </Target>
+    <Target Name="ViaCep:Clean">
+        <MSBuild Projects="ViaCep.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ViaCep:Make">
+        <MSBuild Projects="ViaCep.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ViaCepPackage">
+        <MSBuild Projects="component\ViaCepPackage.dproj"/>
+    </Target>
+    <Target Name="ViaCepPackage:Clean">
+        <MSBuild Projects="component\ViaCepPackage.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ViaCepPackage:Make">
+        <MSBuild Projects="component\ViaCepPackage.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ViaCepTest">
+        <MSBuild Projects="tests\ViaCepTest.dproj"/>
+    </Target>
+    <Target Name="ViaCepTest:Clean">
+        <MSBuild Projects="tests\ViaCepTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ViaCepTest:Make">
+        <MSBuild Projects="tests\ViaCepTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ViaCep;ViaCepPackage;ViaCepTest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ViaCep:Clean;ViaCepPackage:Clean;ViaCepTest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ViaCep:Make;ViaCepPackage:Make;ViaCepTest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
